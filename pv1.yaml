@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: iscsi-pv-logging-1
+spec:
+  capacity:
+    storage: 150Gi
+  accessModes:
+    - ReadWriteOnce
+  iscsi:
+    targetPortal: 10.100.24.251:3260
+    portals: ['10.100.24.251:3260', '10.100.24.252:3260']
+    iqn: iqn.1992-08.com.netapp:sn.1234:vs.4
+    lun: 1
+    initiatorName: iqn.2020-04.test.ocp402:pv-logging-1
+    fsType: ext4
+    readOnly: false
+  storageClassName: gp2
